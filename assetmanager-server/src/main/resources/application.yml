@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: assetmanager
+  datasource:
+    url: jdbc:mysql://localhost:3306/assetmanager
+    username: testuser
+    password: password
+    hikari:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
+      maximum-pool-size: 20
+      jdbc-url: ${spring.datasource.url}

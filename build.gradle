@@ -1,0 +1,60 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE")
+		classpath "com.sun.istack:istack-commons-runtime:3.0.+"  // for nu.studer.jooq
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.apnatimeaayega.assetmanager'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java-library'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom("org.springframework.boot:spring-boot-dependencies:2.2.2.RELEASE")
+		}
+	}
+}
+
+subprojects {
+	apply from: "${rootDir}/dependencies.gradle"
+}
+
+dependencies {
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// annotation processor
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}
+
+test {
+	useJUnitPlatform()
+}

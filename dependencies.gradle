@@ -1,0 +1,9 @@
+ext {
+    //revDockerPlugin = '0.9.4'
+    revEmbeddedmysql = '2.1.10'
+    revFlyway = '5.2.4'
+    revHikari = '3.3.1'
+    revJooq = '3.11.11'
+    revJooqplugin = '3.0.3'
+    revMysql = '8.0.17'
+}
